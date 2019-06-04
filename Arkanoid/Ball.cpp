@@ -1,5 +1,5 @@
-#include "Ball.h"
-
+﻿#include "Ball.h"
+#include <windows.h>
 
 Ball::Ball(float x,float y)
 {
@@ -32,7 +32,7 @@ void Ball::update()
 	}
 	else if (this->bottom() > 600) // height
 	{
-		speed.y = -ballMovement;
+		MessageBoxA(NULL, "Przegrałeś", "Przegrałeś!!", MB_OKCANCEL | MB_ICONEXCLAMATION);
 	}
 }
 
@@ -53,3 +53,26 @@ float Ball::bottom()
 	return this->circle.getPosition().y + circle.getRadius();
 }
 
+void Ball::moveUp()
+{
+	this->speed.y = -ballMovement;
+}
+void Ball::moveBottom()
+{
+	this->speed.y = ballMovement;
+}
+
+void Ball::moveRight()
+{
+	this->speed.x = ballMovement;
+}
+
+void Ball::moveLeft()
+{
+	this->speed.x = -ballMovement;
+}
+
+Vector2f Ball::getPosition()
+{
+	return circle.getPosition();
+}
