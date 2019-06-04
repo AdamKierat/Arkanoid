@@ -71,11 +71,16 @@ void play_arkanoid()
 
 	Font score_string_font;
 	score_string_font.loadFromFile("resources/times.TTF");
-	Text score_string;
+	Text score_string,score_int;
 	score_string.setFont(score_string_font);
 	score_string.setFillColor(Color::White);
 	score_string.setPosition(Vector2f(850.f, 50.f));
 	score_string.setCharacterSize(50);
+
+	score_int.setFont(score_string_font);
+	score_int.setFillColor(Color::White);
+	score_int.setPosition(Vector2f(1050.f, 50.f));
+	score_int.setCharacterSize(50);
 	
 
 	RectangleShape line(Vector2f(20, 600));
@@ -110,7 +115,7 @@ void play_arkanoid()
 		paddle.update();
 		collisionTest(paddle, ball);
 
-		for (auto& block : blocks) if (collisionTest(block, ball)) { score_points++; score+=to_string(score_points); break; };	//TAUTAJ TEN WARUNEK
+		for (auto& block : blocks) if (collisionTest(block, ball)) { score_points++; break; };
 
 		auto iterator = remove_if(begin(blocks), end(blocks), [](Block& block) { return block.isDestroyed();});
 		
@@ -121,7 +126,10 @@ void play_arkanoid()
 		window.draw(line);
 		
 		score_string.setString(score);
+		
+		score_int.setString(to_string(score_points));
 		window.draw(score_string);
+		window.draw(score_int);
 		for (auto& block : blocks)
 		{
 			window.draw(block);
