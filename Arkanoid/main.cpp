@@ -1,24 +1,33 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+#include "Ball.h"
+
+using namespace std;
+using namespace sf;
+
+int const WindowSizeWidth = 800;
+int const WindowSizeHeight = 600;
+
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
+	Ball ball(400, 300);
+	RenderWindow window(VideoMode(WindowSizeWidth, WindowSizeHeight), "Arkanoid-Game");
+	window.setFramerateLimit(60);
 
-	while (window.isOpen())
-	{
-		sf::Event event;
-		while (window.pollEvent(event))
+	Event event;
+	while (1) {
+		window.clear(Color::Black);
+		window.pollEvent(event);
+
+		if (event.type == Event::Closed)
 		{
-			if (event.type == sf::Event::Closed)
-				window.close();
+			window.close();
+			break;
 		}
-
-		window.clear();
-		window.draw(shape);
+		ball.update();
+		window.draw(ball); 
 		window.display();
 	}
-
 	return 0;
 }
