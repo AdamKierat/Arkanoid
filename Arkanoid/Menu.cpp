@@ -8,7 +8,7 @@
 
 Menu::Menu(float width,float height)
 {
-	if (!font.loadFromFile("times.TTF"))
+	if (!font.loadFromFile("resources/times.TTF"))
 	{
 		//handle error
 	}
@@ -27,6 +27,7 @@ Menu::Menu(float width,float height)
 	menu[2].setString("Exit game");
 	menu[2].setPosition(Vector2f(width / 2, height / (MAX_NUMBER_OF_ITEMS + 1) * 3));
 
+	selectedItemIndex = 0;
 }
 
 
@@ -41,4 +42,23 @@ void Menu :: draw(RenderWindow &menuWindow)
 		menuWindow.draw(menu[i]);
 	}
 
+}
+
+void Menu::MoveUp()
+{
+	if (selectedItemIndex - 1 >= 0)
+	{
+		menu[selectedItemIndex].setFillColor(Color::White);
+		selectedItemIndex--;
+		menu[selectedItemIndex].setFillColor(Color::Red);
+	}
+}
+void Menu::MoveDown()
+{
+	if (selectedItemIndex + 1 < MAX_NUMBER_OF_ITEMS)
+	{
+		menu[selectedItemIndex].setFillColor(Color::White);
+		selectedItemIndex++;
+		menu[selectedItemIndex].setFillColor(Color::Red);
+	}
 }

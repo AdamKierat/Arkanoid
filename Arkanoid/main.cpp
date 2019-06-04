@@ -59,44 +59,20 @@ bool collisionTest(Block& block, Ball& ball)
 
 
 }
-int main()
+
+
+void play_arkanoid() 
 {
-	RenderWindow menuWindow(VideoMode(800, 600), "MAIN MENU");
-	Menu menu(menuWindow.getSize().x,menuWindow.getSize().y);
-	menu.draw(menuWindow);
-
-	while (menuWindow.isOpen())
-	{
-		Event menuevent;
-
-		while (menuWindow.pollEvent(menuevent))
-		{
-			switch (menuevent.type)
-			{
-			case Event::Closed:
-					menuWindow.close();
-			}
-		}
-		menuWindow.clear();
-		menu.draw(menuWindow);
-		menuWindow.display();
-	}
-
-
-
-
 	Ball ball(400, 300);
 	Paddle paddle(400, 550);
 
-
-	
 	RenderWindow window(VideoMode(WindowSizeWidth, WindowSizeHeight), "Arkanoid-Game");
 	window.setFramerateLimit(60);
 	unsigned blocksX{ 10 }, blocksY{ 5 }, blockWidth{ 60 }, blockHeight{ 20 };
 
 	vector<Block> blocks;
 
-	for (int i = 0; i < blocksY; i++) 
+	for (int i = 0; i < blocksY; i++)
 	{
 		for (int j = 0; j < blocksX; j++)
 		{
@@ -121,8 +97,8 @@ int main()
 
 		auto iterator = remove_if(begin(blocks), end(blocks), [](Block& block) {return block.isDestroyed(); });
 		blocks.erase(iterator, end(blocks));
-		
-		window.draw(ball); 
+
+		window.draw(ball);
 		window.draw(paddle);
 		for (auto& block : blocks)
 		{
@@ -130,7 +106,58 @@ int main()
 		}
 		window.display();
 
-		
+
 	}
+}
+
+int main()
+{
+	RenderWindow menuWindow(VideoMode(800, 600), "MAIN MENU");
+	Menu menu(menuWindow.getSize().x,menuWindow.getSize().y);
+	menu.draw(menuWindow);
+
+	while (menuWindow.isOpen())
+	{
+		Event menuevent;
+
+		while (menuWindow.pollEvent(menuevent))
+		{
+			switch (menuevent.type)
+			{
+			case Event::KeyReleased:
+				switch (menuevent.key.code)
+				{
+				case Keyboard::Up:
+					menu.MoveUp();
+					break;
+				case Keyboard::Down:
+					menu.MoveDown();
+					break;
+				case Keyboard::Return:
+					switch (menu.GetPressedItem())
+					{
+					case 0:
+						play_arkanoid();			//game
+						break;
+					case 1:
+											//options
+						break;
+					case 2:
+						menuWindow.close();
+						break;
+					}
+					break;
+				}
+				break;
+			case Event::Closed:
+					menuWindow.close();
+					break;
+			}
+		}
+		menuWindow.clear();
+		menu.draw(menuWindow);
+		menuWindow.display();
+	}
+
 	return 0;
 }

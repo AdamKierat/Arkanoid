@@ -13,6 +13,7 @@ public:
 	void draw(RenderWindow &menuWindow);
 	void MoveUp();
 	void MoveDown();
+	int GetPressedItem() { return selectedItemIndex; }
 
 private:
 	int selectedItemIndex;
