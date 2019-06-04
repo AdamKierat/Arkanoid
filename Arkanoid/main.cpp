@@ -3,6 +3,7 @@
 #include "Ball.h"
 #include "Paddle.h"
 #include "Block.h"
+#include "Menu.h"
 using namespace std;
 using namespace sf;
 
@@ -60,8 +61,35 @@ bool collisionTest(Block& block, Ball& ball)
 }
 int main()
 {
+	RenderWindow menuWindow(VideoMode(800, 600), "MAIN MENU");
+	Menu menu(menuWindow.getSize().x,menuWindow.getSize().y);
+	menu.draw(menuWindow);
+
+	while (menuWindow.isOpen())
+	{
+		Event menuevent;
+
+		while (menuWindow.pollEvent(menuevent))
+		{
+			switch (menuevent.type)
+			{
+			case Event::Closed:
+					menuWindow.close();
+			}
+		}
+		menuWindow.clear();
+		menu.draw(menuWindow);
+		menuWindow.display();
+	}
+
+
+
+
 	Ball ball(400, 300);
 	Paddle paddle(400, 550);
+
+
+	
 	RenderWindow window(VideoMode(WindowSizeWidth, WindowSizeHeight), "Arkanoid-Game");
 	window.setFramerateLimit(60);
 	unsigned blocksX{ 10 }, blocksY{ 5 }, blockWidth{ 60 }, blockHeight{ 20 };
@@ -75,12 +103,12 @@ int main()
 			blocks.emplace_back((j + 1) *(blockWidth + 10), (i + 2)*(blockHeight + 2), blockWidth, blockHeight);
 		}
 	}
-	Event event;
+	Event eventgame;
 	while (1) {
 		window.clear(Color::Black);
-		window.pollEvent(event);
+		window.pollEvent(eventgame);
 
-		if (event.type == Event::Closed)
+		if (eventgame.type == Event::Closed)
 		{
 			window.close();
 			break;
@@ -101,6 +129,8 @@ int main()
 			window.draw(block);
 		}
 		window.display();
+
+		
 	}
 	return 0;
 }

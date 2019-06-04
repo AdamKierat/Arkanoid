@@ -1,4 +1,41 @@
-﻿  Ball.cpp
-d:\arkanoid\arkanoid\arkanoid\ball.cpp(35): warning C4566: character represented by universal-character-name '\u0142' cannot be represented in the current code page (1252)
-d:\arkanoid\arkanoid\arkanoid\ball.cpp(35): warning C4566: character represented by universal-character-name '\u015B' cannot be represented in the current code page (1252)
+﻿  main.cpp
+d:\arkanoid\arkanoid\arkanoid\main.cpp(65): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+d:\arkanoid\arkanoid\arkanoid\main.cpp(99): warning C4018: '<': signed/unsigned mismatch
+d:\arkanoid\arkanoid\arkanoid\main.cpp(101): warning C4018: '<': signed/unsigned mismatch
+c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\xmemory0(881): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\vector(900): note: see reference to function template instantiation 'void std::_Default_allocator_traits<_Alloc>::construct<_Ty,unsigned int,unsigned int,unsigned int&,unsigned int&>(_Alloc &,_Objty *const ,unsigned int &&,unsigned int &&,unsigned int &,unsigned int &)' being compiled
+          with
+          [
+              _Alloc=std::allocator<Block>,
+              _Ty=Block,
+              _Objty=Block
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\vector(902): note: see reference to function template instantiation 'void std::_Default_allocator_traits<_Alloc>::construct<_Ty,unsigned int,unsigned int,unsigned int&,unsigned int&>(_Alloc &,_Objty *const ,unsigned int &&,unsigned int &&,unsigned int &,unsigned int &)' being compiled
+          with
+          [
+              _Alloc=std::allocator<Block>,
+              _Ty=Block,
+              _Objty=Block
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\vector(916): note: see reference to function template instantiation 'void std::vector<Block,std::allocator<_Ty>>::_Emplace_back_with_unused_capacity<unsigned int,unsigned int,unsigned int&,unsigned int&>(unsigned int &&,unsigned int &&,unsigned int &,unsigned int &)' being compiled
+          with
+          [
+              _Ty=Block
+          ]
+  d:\arkanoid\arkanoid\arkanoid\main.cpp(103): note: see reference to function template instantiation 'void std::vector<Block,std::allocator<_Ty>>::emplace_back<unsigned int,unsigned int,unsigned int&,unsigned int&>(unsigned int &&,unsigned int &&,unsigned int &,unsigned int &)' being compiled
+          with
+          [
+              _Ty=Block
+          ]
+c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\xmemory0(881): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+          with
+          [
+              _Ty=unsigned int
+          ]
+d:\arkanoid\arkanoid\arkanoid\main.cpp(34): warning C4715: 'collisionTest': not all control paths return a value
+d:\arkanoid\arkanoid\arkanoid\main.cpp(61): warning C4715: 'collisionTest': not all control paths return a value
   Arkanoid.vcxproj -> D:\Arkanoid\Arkanoid\x64\Debug\Arkanoid.exe
