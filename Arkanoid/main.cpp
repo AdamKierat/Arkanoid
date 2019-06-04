@@ -7,7 +7,7 @@
 using namespace std;
 using namespace sf;
 
-int const WindowSizeWidth = 800;
+int const WindowSizeWidth = 1200;
 int const WindowSizeHeight = 600;
 
 template <class T1, class T2> bool isIntersecting(T1& A, T2& B)
@@ -60,11 +60,31 @@ bool collisionTest(Block& block, Ball& ball)
 
 }
 
-
+using namespace std;
 void play_arkanoid() 
 {
+	string score = "SCORE : ";
+	int score_points = 0;
+
 	Ball ball(400, 300);
 	Paddle paddle(400, 550);
+
+	Font score_string_font;
+	score_string_font.loadFromFile("resources/times.TTF");
+	Text score_string,score_int;
+	score_string.setFont(score_string_font);
+	score_string.setFillColor(Color::White);
+	score_string.setPosition(Vector2f(850.f, 50.f));
+	score_string.setCharacterSize(50);
+
+	score_int.setFont(score_string_font);
+	score_int.setFillColor(Color::White);
+	score_int.setPosition(Vector2f(1050.f, 50.f));
+	score_int.setCharacterSize(50);
+	
+
+	RectangleShape line(Vector2f(20, 600));
+	line.setPosition(800.f, 0.f);
 
 	RenderWindow window(VideoMode(WindowSizeWidth, WindowSizeHeight), "Arkanoid-Game");
 	window.setFramerateLimit(60);
@@ -80,7 +100,9 @@ void play_arkanoid()
 		}
 	}
 	Event eventgame;
-	while (1) {
+
+
+	while (true) {
 		window.clear(Color::Black);
 		window.pollEvent(eventgame);
 
@@ -93,27 +115,35 @@ void play_arkanoid()
 		paddle.update();
 		collisionTest(paddle, ball);
 
-		for (auto& block : blocks) if (collisionTest(block, ball)) break;
+		for (auto& block : blocks) if (collisionTest(block, ball)) { score_points++; break; };
 
-		auto iterator = remove_if(begin(blocks), end(blocks), [](Block& block) {return block.isDestroyed(); });
+		auto iterator = remove_if(begin(blocks), end(blocks), [](Block& block) { return block.isDestroyed();});
+		
 		blocks.erase(iterator, end(blocks));
 
 		window.draw(ball);
 		window.draw(paddle);
+		window.draw(line);
+		
+		score_string.setString(score);
+		
+		score_int.setString(to_string(score_points));
+		window.draw(score_string);
+		window.draw(score_int);
 		for (auto& block : blocks)
 		{
 			window.draw(block);
 		}
+	
 		window.display();
 
 
 	}
 }
-
-int main()
+void play_menu()
 {
 	RenderWindow menuWindow(VideoMode(800, 600), "MAIN MENU");
-	Menu menu(menuWindow.getSize().x,menuWindow.getSize().y);
+	Menu menu(menuWindow.getSize().x, menuWindow.getSize().y);
 	menu.draw(menuWindow);
 
 	while (menuWindow.isOpen())
@@ -140,7 +170,7 @@ int main()
 						play_arkanoid();			//game
 						break;
 					case 1:
-											//options
+						//options
 						break;
 					case 2:
 						menuWindow.close();
@@ -150,14 +180,19 @@ int main()
 				}
 				break;
 			case Event::Closed:
-					menuWindow.close();
-					break;
+				menuWindow.close();
+				break;
 			}
 		}
 		menuWindow.clear();
 		menu.draw(menuWindow);
 		menuWindow.display();
 	}
+}
+
+int main()
+{
+	play_menu();
 
 	return 0;
 }

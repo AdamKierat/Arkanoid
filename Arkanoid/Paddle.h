@@ -24,7 +24,7 @@ private:
 	void draw(RenderTarget& target, RenderStates state) const override;
 	RectangleShape rectangle;
 
-	const float paddleWidth{ 70.0f };
+	const float paddleWidth{ 80.0f };
 	const float paddleHeight{ 20.0f };
 	const float paddleMovement{ 6.0f };
 
