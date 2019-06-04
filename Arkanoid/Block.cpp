@@ -1,7 +1,7 @@
 #include "Block.h"
 using namespace std;
 using namespace sf;
-
+int points = 0;
 
 Block::Block(float x,float y,float width,float height)
 {
@@ -39,6 +39,7 @@ Vector2f Block::getPosition()
 }
 
 bool Block::isDestroyed() {
+
 	return this->destroyed;
 }
 void Block::destroy()
