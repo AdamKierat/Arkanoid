@@ -4,6 +4,7 @@
 #include "Paddle.h"
 #include "Block.h"
 #include "Menu.h"
+#include "Gameover.h"
 using namespace std;
 using namespace sf;
 
@@ -59,8 +60,8 @@ bool collisionTest(Block& block, Ball& ball)
 
 
 }
+int testing_int = 0;
 
-using namespace std;
 void play_arkanoid() 
 {
 	string score = "SCORE : ";
@@ -112,6 +113,7 @@ void play_arkanoid()
 			break;
 		}
 		ball.update();
+		if (ball.isOutside()) { window.close(); break; }
 		paddle.update();
 		collisionTest(paddle, ball);
 
@@ -139,7 +141,53 @@ void play_arkanoid()
 
 
 	}
+	RenderWindow gameoverWindow(VideoMode(800, 600), "MAIN MENU");
+	Gameover gameover(gameoverWindow.getSize().x, gameoverWindow.getSize().y);
+	gameover.draw(gameoverWindow);
+
+	while (gameoverWindow.isOpen())
+	{
+		Event gameoverEvent;
+
+		while (gameoverWindow.pollEvent(gameoverEvent))
+		{
+			switch (gameoverEvent.type)
+			{
+			case Event::KeyReleased:
+				switch (gameoverEvent.key.code)
+				{
+				case Keyboard::Up:
+					gameover.MoveUp();
+					break;
+				case Keyboard::Down:
+					gameover.MoveDown();
+					break;
+				case Keyboard::Return:
+					switch (gameover.GetPressedItem())
+					{
+					case 0:
+						play_arkanoid();
+						gameoverWindow.close();//game
+						break;
+					case 1:
+						gameoverWindow.close();
+						break;
+					}
+					break;
+				}
+				break;
+			case Event::Closed:
+				gameoverWindow.close();
+				break;
+			}
+		}
+		gameoverWindow.clear();
+		gameover.draw(gameoverWindow);
+		gameoverWindow.display();
+	}
 }
+
+
 void play_menu()
 {
 	RenderWindow menuWindow(VideoMode(800, 600), "MAIN MENU");
@@ -167,7 +215,8 @@ void play_menu()
 					switch (menu.GetPressedItem())
 					{
 					case 0:
-						play_arkanoid();			//game
+						play_arkanoid();
+						menuWindow.close();//game
 						break;
 					case 1:
 						//options

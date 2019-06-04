@@ -17,6 +17,8 @@ public:
 	void moveRight();
 	void moveBottom();
 
+	bool isOutside();
+
 	Vector2f getPosition();
 
 	float left();

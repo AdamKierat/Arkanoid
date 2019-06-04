@@ -1,7 +1,14 @@
 ﻿  main.cpp
-d:\arkanoid\arkanoid\arkanoid\main.cpp(95): warning C4018: '<': signed/unsigned mismatch
-d:\arkanoid\arkanoid\arkanoid\main.cpp(97): warning C4018: '<': signed/unsigned mismatch
-d:\arkanoid\arkanoid\arkanoid\main.cpp(146): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+d:\arkanoid\arkanoid\arkanoid\gameover.h(4): warning C4005: 'MAX_NUMBER_OF_ITEMS': macro redefinition
+  d:\arkanoid\arkanoid\arkanoid\menu.h(4): note: see previous definition of 'MAX_NUMBER_OF_ITEMS'
+d:\arkanoid\arkanoid\arkanoid\main.cpp(96): warning C4018: '<': signed/unsigned mismatch
+d:\arkanoid\arkanoid\arkanoid\main.cpp(98): warning C4018: '<': signed/unsigned mismatch
+d:\arkanoid\arkanoid\arkanoid\main.cpp(145): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+d:\arkanoid\arkanoid\arkanoid\main.cpp(194): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
@@ -26,7 +33,7 @@ c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.
           [
               _Ty=Block
           ]
-  d:\arkanoid\arkanoid\arkanoid\main.cpp(99): note: see reference to function template instantiation 'void std::vector<Block,std::allocator<_Ty>>::emplace_back<unsigned int,unsigned int,unsigned int&,unsigned int&>(unsigned int &&,unsigned int &&,unsigned int &,unsigned int &)' being compiled
+  d:\arkanoid\arkanoid\arkanoid\main.cpp(100): note: see reference to function template instantiation 'void std::vector<Block,std::allocator<_Ty>>::emplace_back<unsigned int,unsigned int,unsigned int&,unsigned int&>(unsigned int &&,unsigned int &&,unsigned int &,unsigned int &)' being compiled
           with
           [
               _Ty=Block
@@ -36,6 +43,6 @@ c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.
           [
               _Ty=unsigned int
           ]
-d:\arkanoid\arkanoid\arkanoid\main.cpp(61): warning C4715: 'collisionTest': not all control paths return a value
-d:\arkanoid\arkanoid\arkanoid\main.cpp(34): warning C4715: 'collisionTest': not all control paths return a value
+d:\arkanoid\arkanoid\arkanoid\main.cpp(62): warning C4715: 'collisionTest': not all control paths return a value
+d:\arkanoid\arkanoid\arkanoid\main.cpp(35): warning C4715: 'collisionTest': not all control paths return a value
   Arkanoid.vcxproj -> D:\Arkanoid\Arkanoid\x64\Debug\Arkanoid.exe

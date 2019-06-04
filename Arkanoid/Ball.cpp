@@ -32,7 +32,6 @@ void Ball::update()
 	}
 	else if (this->bottom() > 600) // height
 	{
-		MessageBoxA(NULL, "Przegrałeś", "Przegrałeś!!", MB_OKCANCEL | MB_ICONEXCLAMATION);
 	}
 }
 
@@ -62,6 +61,14 @@ void Ball::moveBottom()
 	this->speed.y = ballMovement;
 }
 
+bool Ball::isOutside()
+{
+	if (this->bottom() <= 600)
+	{
+		return false;
+	}
+	else return true;
+}
 void Ball::moveRight()
 {
 	this->speed.x = ballMovement;
