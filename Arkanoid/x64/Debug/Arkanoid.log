@@ -1,4 +1,4 @@
 ﻿  Ball.cpp
-  main.cpp
-  Generating Code...
+d:\arkanoid\arkanoid\arkanoid\ball.cpp(35): warning C4566: character represented by universal-character-name '\u0142' cannot be represented in the current code page (1252)
+d:\arkanoid\arkanoid\arkanoid\ball.cpp(35): warning C4566: character represented by universal-character-name '\u015B' cannot be represented in the current code page (1252)
   Arkanoid.vcxproj -> D:\Arkanoid\Arkanoid\x64\Debug\Arkanoid.exe

@@ -9,9 +9,16 @@ class Paddle : public Drawable
 public:
 	Paddle(float x, float y);
 	Paddle() = delete;
-	~Paddle(); = default;
+	~Paddle() = default;
 
 	void update();
+	float right();
+	float left();
+	float top();
+	float bottom();
+
+	Vector2f getPosition();
+
 private:
 
 	void draw(RenderTarget& target, RenderStates state) const override;

@@ -12,6 +12,13 @@ public:
 
 	void update();
 
+	void moveUp();
+	void moveLeft();
+	void moveRight();
+	void moveBottom();
+
+	Vector2f getPosition();
+
 	float left();
 	float right();
 	float bottom();
