@@ -1,6 +1,6 @@
 ﻿#include "Ball.h"
 #include <windows.h>
-
+int v1 = rand() % 10;
 Ball::Ball(float x,float y)
 {
 	circle.setPosition(x, y);
@@ -54,11 +54,11 @@ float Ball::bottom()
 
 void Ball::moveUp()
 {
-	this->speed.y = -ballMovement;
+	this->speed.y = -ballMovement-v1;
 }
 void Ball::moveBottom()
 {
-	this->speed.y = ballMovement;
+	this->speed.y = ballMovement+v1;
 }
 
 bool Ball::isOutside()
@@ -71,12 +71,12 @@ bool Ball::isOutside()
 }
 void Ball::moveRight()
 {
-	this->speed.x = ballMovement;
+	this->speed.x = ballMovement+v1;
 }
 
 void Ball::moveLeft()
 {
-	this->speed.x = -ballMovement;
+	this->speed.x = -ballMovement-v1;
 }
 
 Vector2f Ball::getPosition()

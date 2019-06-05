@@ -62,7 +62,7 @@ bool collisionTest(Block& block, Ball& ball)
 }
 int testing_int = 0;
 
-void play_arkanoid() 
+void play_arkanoid()
 {
 	string score = "SCORE : ";
 	int score_points = 0;
@@ -72,7 +72,7 @@ void play_arkanoid()
 
 	Font score_string_font;
 	score_string_font.loadFromFile("resources/times.TTF");
-	Text score_string,score_int;
+	Text score_string, score_int;
 	score_string.setFont(score_string_font);
 	score_string.setFillColor(Color::White);
 	score_string.setPosition(Vector2f(850.f, 50.f));
@@ -82,14 +82,27 @@ void play_arkanoid()
 	score_int.setFillColor(Color::White);
 	score_int.setPosition(Vector2f(1050.f, 50.f));
 	score_int.setCharacterSize(50);
-	
+
+
+	Texture imageSource;																			//HEARTS
+	imageSource.loadFromFile("resources/heart.png");
+
+	Sprite imageSprite;
+	imageSprite.setTexture(imageSource);
+	Sprite imageSprite2 = imageSprite;
+	Sprite imageSprite3 = imageSprite;
+
+	imageSprite.setPosition(Vector2f(850.f, 120.f));
+	imageSprite2.setPosition(Vector2f(950.f, 120.f));
+	imageSprite3.setPosition(Vector2f(1050.f, 120.f));
+
 
 	RectangleShape line(Vector2f(20, 600));
 	line.setPosition(800.f, 0.f);
 
 	RenderWindow window(VideoMode(WindowSizeWidth, WindowSizeHeight), "Arkanoid-Game");
 	window.setFramerateLimit(60);
-	unsigned blocksX{ 10 }, blocksY{ 5 }, blockWidth{ 60 }, blockHeight{ 20 };
+	unsigned blocksX{ 10 }, blocksY{ 3 }, blockWidth{ 60 }, blockHeight{ 20 };
 
 	vector<Block> blocks;
 
@@ -103,7 +116,8 @@ void play_arkanoid()
 	Event eventgame;
 
 
-	while (true) {
+	while (window.isOpen())
+	{
 		window.clear(Color::Black);
 		window.pollEvent(eventgame);
 
@@ -113,42 +127,54 @@ void play_arkanoid()
 			break;
 		}
 		ball.update();
-		if (ball.isOutside()) { window.close(); break; }
+
+		if (ball.isOutside())
+		{
+			window.close();
+			break;
+		}
+
 		paddle.update();
 		collisionTest(paddle, ball);
 
-		for (auto& block : blocks) if (collisionTest(block, ball)) { score_points++; break; };
+		for (auto& block : blocks) if (collisionTest(block, ball)) { score_points++;}
 
-		auto iterator = remove_if(begin(blocks), end(blocks), [](Block& block) { return block.isDestroyed();});
-		
+		auto iterator = remove_if(begin(blocks), end(blocks), [](Block& block) { return block.isDestroyed(); });
 		blocks.erase(iterator, end(blocks));
+
+
+
+		score_string.setString(score);
+		score_int.setString(to_string(score_points));
 
 		window.draw(ball);
 		window.draw(paddle);
 		window.draw(line);
-		
-		score_string.setString(score);
-		
-		score_int.setString(to_string(score_points));
 		window.draw(score_string);
 		window.draw(score_int);
+
+		window.draw(imageSprite);
+		window.draw(imageSprite2);
+		window.draw(imageSprite3);
+
 		for (auto& block : blocks)
 		{
 			window.draw(block);
 		}
-	
+
 		window.display();
-
-
 	}
-	RenderWindow gameoverWindow(VideoMode(800, 600), "MAIN MENU");
+
+	
+	
+	RenderWindow gameoverWindow(VideoMode(1200, 600), "GAME OVER");
 	Gameover gameover(gameoverWindow.getSize().x, gameoverWindow.getSize().y);
 	gameover.draw(gameoverWindow);
+
 
 	while (gameoverWindow.isOpen())
 	{
 		Event gameoverEvent;
-
 		while (gameoverWindow.pollEvent(gameoverEvent))
 		{
 			switch (gameoverEvent.type)
@@ -167,7 +193,7 @@ void play_arkanoid()
 					{
 					case 0:
 						play_arkanoid();
-						gameoverWindow.close();//game
+						gameoverWindow.close();
 						break;
 					case 1:
 						gameoverWindow.close();
@@ -181,9 +207,11 @@ void play_arkanoid()
 				break;
 			}
 		}
+		
 		gameoverWindow.clear();
 		gameover.draw(gameoverWindow);
 		gameoverWindow.display();
+	
 	}
 }
 
